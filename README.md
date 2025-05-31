@@ -482,8 +482,6 @@ sequenceDiagram
 
 ---
 
-<br>
-
 ## <a id="苦労した点"></a> ⚠️ 苦労した点
 
 <br>
