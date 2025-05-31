@@ -252,6 +252,7 @@ class TCPServer:
 
 
 class UDPServer:
+    
     def __init__(self, server_address, server_port):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.sock.bind((server_address, server_port))
@@ -382,6 +383,7 @@ class UDPServer:
 
 
 if __name__ == "__main__":
+    
     # サーバーの IPアドレス と ポート番号 を設定
     server_address  = '0.0.0.0'
     tcp_server_port = 9001
