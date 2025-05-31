@@ -6,6 +6,7 @@ from Crypto.PublicKey import RSA
 
 
 class TCPClient:
+    
     HEADER_ROOM_LEN    = 1
     HEADER_OP_LEN      = 1
     HEADER_STATE_LEN   = 1
@@ -43,7 +44,6 @@ class TCPClient:
     
         return room_size + op_code + state_code + payload_size
 
-
     def make_packet(self, room, op, payload):
         payload_bytes = json.dumps(payload).encode("utf-8")
         room_bytes = room.encode("utf-8")
@@ -69,7 +69,6 @@ class TCPClient:
         # サーバーからトークンを受信
         token = self.sock.recv()
 
-        # 接続を閉じる
         self.sock.close()
 
         # トークンとルーム情報を返す
@@ -92,7 +91,6 @@ class TCPClient:
         # サーバーからの応答を受信・復号
         response = self.sock.recv().decode()
 
-        # 接続を閉じる
         self.sock.close()
 
         # 応答文字列をリスト形式に整形して返す
@@ -117,13 +115,13 @@ class TCPClient:
         op_code = 2
         state = 0
 
-        # --- ルーム一覧取得フェーズ ---
+        # ルーム一覧取得フェーズ
         payload_list = {"username": username, "password": ""}
         list_packet = self.make_packet("", op_code, payload_list)
         self.sock.sendall(list_packet)
         _ = self.sock.recv()  # ルーム一覧はここでは使わない
 
-        # --- ルーム参加リクエスト送信 ---
+        # ルーム参加リクエスト送信 
         payload_join = {"username": username, "password": password}
         join_packet = self.make_packet(room, op_code, payload_join)
         self.sock.sendall(join_packet)
@@ -131,10 +129,8 @@ class TCPClient:
         # サーバーからの応答を受信
         resp = self.sock.recv()
 
-        # 接続を閉じる
         self.sock.close()
 
-        # エラー判定
         if resp.startswith(b"InvalidPassword"):
             raise ValueError("パスワードが違います。")
         if resp.startswith(b"InvalidRoom"):
@@ -145,6 +141,7 @@ class TCPClient:
 
 
 class UDPClient:
+    
     def __init__(self, server_addr, server_port, info, cipher):
         self.server_addr = server_addr
         self.server_port = server_port
