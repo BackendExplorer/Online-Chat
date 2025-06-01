@@ -4,13 +4,7 @@ from crypto import RSAKeyExchange, AESCipherCFB, SecureSocket
 from Crypto.PublicKey import RSA  
 
 
-
 class TCPClient:
-    
-    HEADER_ROOM_LEN    = 1
-    HEADER_OP_LEN      = 1
-    HEADER_STATE_LEN   = 1
-    HEADER_PAYLOAD_LEN = 29   
 
     def __init__(self, server_address, server_port):
         self.server_address = server_address
@@ -37,10 +31,10 @@ class TCPClient:
         self.sock   = SecureSocket(tcp_socket, self.cipher)
 
     def make_header(self, room_bytes, op, state, payload_bytes):
-        room_size    = len(room_bytes).to_bytes(self.HEADER_ROOM_LEN, 'big')
-        op_code      = op.to_bytes(self.HEADER_OP_LEN, 'big')
-        state_code   = state.to_bytes(self.HEADER_STATE_LEN, 'big')
-        payload_size = len(payload_bytes).to_bytes(self.HEADER_PAYLOAD_LEN, 'big')
+        room_size    = len(room_bytes).to_bytes(1, 'big')
+        op_code      = op.to_bytes(1, 'big')
+        state_code   = state.to_bytes(1, 'big')
+        payload_size = len(payload_bytes).to_bytes(29, 'big')
     
         return room_size + op_code + state_code + payload_size
 
