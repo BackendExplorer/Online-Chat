@@ -328,8 +328,8 @@ class UDPServer:
 
     def remove_inactive_clients(self):
         while True:
-            # タイムアウトの閾値（30秒間アクティビティがない場合）
-            inactivity_threshold = time.time() - 30
+            # タイムアウトの閾値（5分間アクティビティがない場合）
+            inactivity_threshold = time.time() - 300
              
             # 全クライアントを走査して、非アクティブなクライアントを検出
             for token, client_info in list(self.client_data.items()):
