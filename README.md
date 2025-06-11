@@ -50,9 +50,11 @@
 
 - [システム全体の構成図](#システム全体の構成図)
 
+- [クラス構成 と モジュール設計](#クラス構成とモジュール設計)
+
 - [使用技術](#使用技術)
 
-- [クラス構成 と モジュール設計](#クラス構成とモジュール設計)
+
 
 
 
@@ -257,74 +259,6 @@ sequenceDiagram
 ---
 
 
-## <a id="使用技術"></a>🧰 使用技術
-
-<br>
-
-### 1. 技術選定の理由
-
-- **`Python`**
-
-  豊富な標準ライブラリと高い可読性によって、複雑なシステムを効率的に実装するため
-
-- **`TCPソケット`**
-
-  ルーム参加・ユーザー認証など、確実なデータ転送が必要な処理に利用するため
-
-- **`UDPソケット`**
-
-  チャットメッセージ送信などリアルタイム性を重視する通信に利用するため
-
-- **`ハイブリッド暗号方式`**
-
-  大量のクライアントがサーバに接続したとき、安全性を確保しつつ通信効率を維持するため
-
-- **`マルチスレッド`**
-
-  クライアントごとの並行処理を軽量に行うため
-
-- **`Streamlit`**
-
-  Pythonのみで手軽にWeb UIを構築できるため、開発効率を重視して採用
-
-- **`Docker`**
-
-  依存関係をコンテナ内に隔離し、環境差異を排除してどこでも同じ動作を保証するため
-
-- **`Docker-Compose`**
-
-  サーバコンテナとクライアントコンテナを同時に起動し、起動手順を簡素化するため
-
-- **`Github Actions`**
-
-  プッシュやプルリクエスト時に、Docker Buildxによるビルドから起動・動作確認・クリーンアップを
-
-  自動化し、変更によって生じた不具合を素早く検出・修正できるようにするため
-
-
-
-<br>
-
-### 2.  技術スタックと 開発環境 の全体像
-
-<br>
-
-| カテゴリ       | 採用技術 と 使用ツール                                                                                     　　|
-|----------------|----------------------------------------------------------------------------------------------------------------------|
-| 開発言語       | ![Python](https://img.shields.io/badge/Python-3.13.2-blue) <br>標準ライブラリ使用：`socket`, `threading`, `logging`, `time`, `sys` |
-| 通信技術       | ![TCP](https://img.shields.io/badge/Protocol-TCP-blue) ![UDP](https://img.shields.io/badge/Protocol-UDP-blue) <br>独自プロトコルTCRP（Talk Chat Room Protocol）を用いた通信設計 |
-| 暗号技術       | ![PyCryptodome](https://img.shields.io/badge/Encryption-PyCryptodome-blue) <br>ハイブリッド暗号方式 (RSA＋AES) で通信
-| 並列処理       | ![Threading](https://img.shields.io/badge/Concurrency-Threading-yellow) <br>マルチスレッドによる並列処理                      |
-| UIフレームワーク | ![Streamlit](https://img.shields.io/badge/UI-Streamlit-red) <br>Webベースのインターフェースを簡易に構築 |
-| 開発環境       | ![macOS](https://img.shields.io/badge/OS-macOS-lightgrey)&nbsp;&nbsp;&nbsp;&nbsp;![VSCode](https://img.shields.io/badge/Editor-VSCode-blue) |
-| バージョン管理 | ![Git](https://img.shields.io/badge/VersionControl-Git-orange)&nbsp;&nbsp;&nbsp;&nbsp;![GitHub](https://img.shields.io/badge/Repo-GitHub-black) |
-| インフラ | ![Docker](https://img.shields.io/badge/Container-Docker-blue) ![Docker Compose](https://img.shields.io/badge/Orchestration-Docker_Compose-2496ED?logo=docker&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/CI-GitHub_Actions-black?logo=githubactions&logoColor=white) |
-| 描画ツール     | ![Mermaid](https://img.shields.io/badge/Diagram-Mermaid-green)&nbsp;&nbsp;&nbsp;&nbsp;![LaTeX](https://img.shields.io/badge/Doc-LaTeX-9cf) |
-
-
-<br>
-
----
 
 ## <a id="クラス構成とモジュール設計"></a>📌 クラス構成 と モジュール設計
 
@@ -441,6 +375,76 @@ graph TD
 <br>
 
 ---
+
+## <a id="使用技術"></a>🧰 使用技術
+
+<br>
+
+### 1. 技術選定の理由
+
+- **`Python`**
+
+  豊富な標準ライブラリと高い可読性によって、複雑なシステムを効率的に実装するため
+
+- **`TCPソケット`**
+
+  ルーム参加・ユーザー認証など、確実なデータ転送が必要な処理に利用するため
+
+- **`UDPソケット`**
+
+  チャットメッセージ送信などリアルタイム性を重視する通信に利用するため
+
+- **`ハイブリッド暗号方式`**
+
+  大量のクライアントがサーバに接続したとき、安全性を確保しつつ通信効率を維持するため
+
+- **`マルチスレッド`**
+
+  クライアントごとの並行処理を軽量に行うため
+
+- **`Streamlit`**
+
+  Pythonのみで手軽にWeb UIを構築できるため、開発効率を重視して採用
+
+- **`Docker`**
+
+  依存関係をコンテナ内に隔離し、環境差異を排除してどこでも同じ動作を保証するため
+
+- **`Docker-Compose`**
+
+  サーバコンテナとクライアントコンテナを同時に起動し、起動手順を簡素化するため
+
+- **`Github Actions`**
+
+  プッシュやプルリクエスト時に、Docker Buildxによるビルドから起動・動作確認・クリーンアップを
+
+  自動化し、変更によって生じた不具合を素早く検出・修正できるようにするため
+
+
+
+<br>
+
+### 2.  技術スタックと 開発環境 の全体像
+
+<br>
+
+| カテゴリ       | 採用技術 と 使用ツール                                                                                     　　|
+|----------------|----------------------------------------------------------------------------------------------------------------------|
+| 開発言語       | ![Python](https://img.shields.io/badge/Python-3.13.2-blue) <br>標準ライブラリ使用：`socket`, `threading`, `logging`, `time`, `sys` |
+| 通信技術       | ![TCP](https://img.shields.io/badge/Protocol-TCP-blue) ![UDP](https://img.shields.io/badge/Protocol-UDP-blue) <br>独自プロトコルTCRP（Talk Chat Room Protocol）を用いた通信設計 |
+| 暗号技術       | ![PyCryptodome](https://img.shields.io/badge/Encryption-PyCryptodome-blue) <br>ハイブリッド暗号方式 (RSA＋AES) で通信
+| 並列処理       | ![Threading](https://img.shields.io/badge/Concurrency-Threading-yellow) <br>マルチスレッドによる並列処理                      |
+| UIフレームワーク | ![Streamlit](https://img.shields.io/badge/UI-Streamlit-red) <br>Webベースのインターフェースを簡易に構築 |
+| 開発環境       | ![macOS](https://img.shields.io/badge/OS-macOS-lightgrey)&nbsp;&nbsp;&nbsp;&nbsp;![VSCode](https://img.shields.io/badge/Editor-VSCode-blue) |
+| バージョン管理 | ![Git](https://img.shields.io/badge/VersionControl-Git-orange)&nbsp;&nbsp;&nbsp;&nbsp;![GitHub](https://img.shields.io/badge/Repo-GitHub-black) |
+| インフラ | ![Docker](https://img.shields.io/badge/Container-Docker-blue) ![Docker Compose](https://img.shields.io/badge/Orchestration-Docker_Compose-2496ED?logo=docker&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/CI-GitHub_Actions-black?logo=githubactions&logoColor=white) |
+| 描画ツール     | ![Mermaid](https://img.shields.io/badge/Diagram-Mermaid-green)&nbsp;&nbsp;&nbsp;&nbsp;![LaTeX](https://img.shields.io/badge/Doc-LaTeX-9cf) |
+
+
+<br>
+
+---
+
 
 ## <a id="設計上のこだわり"></a>🌟 設計上のこだわり
 
