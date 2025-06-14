@@ -266,7 +266,7 @@ sequenceDiagram
 
 <br>
 
-### <a id="server.py のクラス図"></a> [サーバプログラム](https://github.com/BackendExplorer/Online-Chat-Service/blob/main/server.py) のクラス図
+### <a id="server.py のクラス図"></a> サーバプログラム のクラス図
 
 <br>
 
@@ -335,7 +335,7 @@ UDPServer --> AESCipherCFB : uses
 <br>
 
 
-### <a id="client.py のクラス図"></a> [クライアント](https://github.com/BackendExplorer/Online-Chat-Service/blob/main/client.py) のモジュール構成
+### <a id="client.py のクラス図"></a> クライアント のモジュール構成
 
 <br>
 
